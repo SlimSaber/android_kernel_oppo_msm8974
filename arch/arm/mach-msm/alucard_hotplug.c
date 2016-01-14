@@ -66,7 +66,7 @@ static struct hotplug_tuners {
 #endif
 	.min_cpus_online = 1,
 	.maxcoreslimit = NR_CPUS,
-	.maxcoreslimit_sleep = 3,
+	.maxcoreslimit_sleep = 2,
 	.hotplug_suspend = 0,
 	.suspended = false,
 	.force_cpu_up = false,
