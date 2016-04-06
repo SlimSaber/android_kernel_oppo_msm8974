@@ -348,7 +348,7 @@
 			gpio-key,wakeup;
 			debounce-interval = <15>;
 		};
-/*OPPO yuyi add begin for vol_up and vol_down*/
+
 		vol_up {
 			label = "volume_up";
 			gpios = <&pm8941_gpios 5 0x1>;
@@ -357,7 +357,7 @@
 			gpio-key,wakeup;
 			debounce-interval = <15>;
 			gpio-key,skip_resume;
-		};		
+		};
 		vol_down {
 			label = "volume_down";
 			gpios = <&pm8941_gpios 2 0x1>;
@@ -367,8 +367,7 @@
 			debounce-interval = <15>;
 			gpio-key,skip_resume;
 		};
-/*OPPO yuyi add end for vol_up and vol_down*/
-
+/* OPPO zhengzk 2013-04-18 add begin for hallsensor */
 		hallsensor_key {
 			label = "hallsensor_key";
 			gpios = <&msmgpio 68 1>;
@@ -379,7 +378,7 @@
 			gpio-key,wakeup;
 			debounce-interval = <150>;
 		};
-		
+/* OPPO zhengzk 2013-04-18 add end */
 
 /*OPPO Lycan.Wang@Prd.BasicDrv, 2014-08-12 Add for Fingerprint key*/
 		fingerprint_key {
@@ -409,22 +408,17 @@
 	sound {
 		qcom,model = "msm8974-taiko-mtp-snd-card";
 		qcom,cdc-micbias2-headset-only;
-/*#ifndef VENDOR_EDIT*/
-/*xiaojun.lv@PhoneDtp.AudioDriver,modify for oppo use 4 pole jack*/
-        qcom,mbhc-audio-jack-type = "6-pole-jack";
-/*#else VENDOR_EDIT*/
-        qcom,mbhc-audio-jack-type = "4-pole-jack";
-/*#endif VENDOR_EDIT*/
+		qcom,mbhc-audio-jack-type = "6-pole-jack";
 	};
 };
 
 &pm8941_lsid1 {
 	qcom,leds@d800 {
 /*VENDOR_EDIT*/	
-/*OPPO  wenxian.zhen@Onlinerd.driver, 2014/02/20  Added begin for disable wled*/	
+/*OPPO liushu 2013-11-14 add begin for wled*/	
              /* status = "okay";          */
 		status = "disabled";
-/*OPPO  wenxian.zhen@Onlinerd.driver add end for disable wled*/	
+/*OPPO liushu 2013-11-14 add end for wled*/	
 		qcom,wled_0 {
 			label = "wled";
 			linux,name = "wled:backlight";
@@ -432,10 +426,10 @@
 			qcom,cs-out-en;
 			qcom,op-fdbck = <1>;
 /*VENDOR_EDIT*/	
-/*OPPO  wenxian.zhen@Onlinerd.driver, 2014/02/20  Added begin for disable wled*/
+/*OPPO liushu 2013-11-14 add begin for wled*/	
                       /*qcom,default-state = "on";*/
 			qcom,default-state = "off";
-/*OPPO  wenxian.zhen@Onlinerd.driver added end for disable wled*/		
+/*OPPO liushu 2013-11-14 add end for wled*/	
 			qcom,max-current = <25>;
 			qcom,ctrl-delay-us = <0>;
 			qcom,boost-curr-lim = <5>;
@@ -687,7 +681,8 @@
 /*OPPO yuyi 2013-09-27 modify begin for gpio_keys*/
 	gpio@c400 { /* GPIO 5 */
 		qcom,mode = <0>;        /* QPNP_PIN_MODE_DIG_IN */
-		qcom,pull = <5>;        /* QPNP_PIN_PULL_UP_30  */
+	/*	qcom,pull = <0>;     */   /* QPNP_PIN_PULL_UP_30  */
+		qcom,pull = <5>;        
 		qcom,vin-sel = <2>;     /* QPNP_PIN_VIN2  */
 		qcom,src-sel = <0>;	/* QPNP_PIN_SEL_FUNC_CONSTANT */
 		/*qcom,master-en = <1>;*/
@@ -838,7 +833,7 @@
 	};
 
 	gpio@d800 { /* GPIO 25 */
-		/*wangjc change to enable charge 1-->0.*/
+		/*wangjc change to enable charge.*/
 		qcom,mode = <0>;          /* QPNP_PIN_MODE_DIG_IN */
 		qcom,out-strength = <1>;  /* QPNP_PIN_OUT_STRENGTH_LOW */
 		qcom,src-sel = <2>;       /* QPNP_PIN_SEL_FUNC_1  */
@@ -878,13 +873,6 @@
 	};
 
 /*OPPO yuyi 2014-05-24 modify begin for config NFC clock_requset pin*/
-//#ifndef VENDOR_EDIT
-//	gpio@df00 { /* GPIO 32 */
-//		qcom,mode = <0>;        /* QPNP_PIN_MODE_DIG_IN */
-//		qcom,pull = <4>;	/* QPNP_PIN_PULL_DN */
-//		qcom,master-en = <1>;
-//	};
-//#else
 	gpio@df00 { /* GPIO 32 */
 		qcom,mode = <0>;        /* QPNP_PIN_MODE_DIG_IN */
 		qcom,pull = <4>;	/* QPNP_PIN_PULL_DN */
@@ -892,19 +880,8 @@
 		qcom,src-sel = <0>; /* QPNP_PIN_SEL_FUNC_CONSTANT */
 		qcom,master-en = <1>;
 	};
-//#endif
 /*OPPO yuyi 2014-05-24 modify end for config NFC clock_requset pin*/
 /*OPPO songxh 2014-07-01 modify begain for config camera motor pwm pin*/
-/*	gpio@e000 { //GPIO 33 //
-		qcom,mode = <1>;		// QPNP_PIN_MODE_DIG_OUT//
-		qcom,output-type = <0>;		//QPNP_PIN_OUT_BUF_CMOS //
-		qcom,pull = <5>;		//QPNP_PIN_PULL_NO//
-		qcom,vin-sel = <0>;		// QPNP_PIN_VIN2   zwx  VPH_PWR//
-		qcom,out-strength = <1>;	// QPNP_PIN_OUT_STRENGTH_LOW //
-		qcom,src-sel = <0>;		// QPNP_PIN_SEL_FUNC_CONSTANT //
-		qcom,master-en = <1>;
-	};*/
-
 	gpio@e000 { /* GPIO 33 */
 		   /* reg = <e000 0x100>;*/
 		    /*qcom,pin-num = <33>;*/
@@ -1007,13 +984,9 @@
 	};
 };*/
 
-/*ifndef VENDOR_EDIT */
-/*#jiangyg@OnlineRd.PM, 2013/11/04, delete for display */
-/*
 &dsi_tosh_720_vid {
        qcom,cont-splash-enabled;
-};*/
-/*endif VENDOR_EDIT*/
+};
 
 &dsi_generic_720p_cmd {
        qcom,cont-splash-enabled;

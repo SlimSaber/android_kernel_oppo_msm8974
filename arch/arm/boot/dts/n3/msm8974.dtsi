@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -876,7 +876,7 @@
 						   "cdc-vdd-a-1p2v",
 						   "cdc-vddcx-1",
 						   "cdc-vddcx-2";
-		
+
 			qcom,cdc-micbias-ldoh-v = <0x3>;
 			qcom,cdc-micbias-cfilt1-mv = <1800>;
 			qcom,cdc-micbias-cfilt2-mv = <2700>;
@@ -904,31 +904,31 @@
 			    "lpaif_tert_mode_muxsel",
 			    "lpaif_quat_mode_muxsel";
 
-		qcom,audio-routing =
+                qcom,audio-routing =
                         "AIF4 VI", "MCLK",
-			"RX_BIAS", "MCLK",
-			"LDO_H", "MCLK",
-			"AIF4 MAD", "MCLK",
-			"AMIC1", "MIC BIAS1 Internal1",
-			"MIC BIAS1 Internal1", "Handset Mic",
-			"AMIC2", "MIC BIAS2 External",
-			"MIC BIAS2 External", "Headset Mic",
+                        "RX_BIAS", "MCLK",
+                        "LDO_H", "MCLK",
+                        "AIF4 MAD", "MCLK",
+                        "AMIC1", "MIC BIAS1 Internal1",
+                        "MIC BIAS1 Internal1", "Handset Mic",
+                        "AMIC2", "MIC BIAS2 External",
+                        "MIC BIAS2 External", "Headset Mic",
                         "AMIC3", "MIC BIAS2 External",
                         "MIC BIAS2 External", "ANCRight Headset Mic",
                         "AMIC4", "MIC BIAS2 External",
                         "MIC BIAS2 External", "ANCLeft Headset Mic",
-			"DMIC1", "MIC BIAS1 External",
-			"MIC BIAS1 External", "Digital Mic1",
-			"DMIC2", "MIC BIAS1 External",
-			"MIC BIAS1 External", "Digital Mic2",
-			"DMIC3", "MIC BIAS3 External",
-			"MIC BIAS3 External", "Digital Mic3",
-			"DMIC4", "MIC BIAS3 External",
-			"MIC BIAS3 External", "Digital Mic4",
-			"DMIC5", "MIC BIAS4 External",
-			"MIC BIAS4 External", "Digital Mic5",
-			"DMIC6", "MIC BIAS4 External",
-			"MIC BIAS4 External", "Digital Mic6";
+                        "DMIC1", "MIC BIAS1 External",
+                        "MIC BIAS1 External", "Digital Mic1",
+                        "DMIC2", "MIC BIAS1 External",
+                        "MIC BIAS1 External", "Digital Mic2",
+                        "DMIC3", "MIC BIAS3 External",
+                        "MIC BIAS3 External", "Digital Mic3",
+                        "DMIC4", "MIC BIAS3 External",
+                        "MIC BIAS3 External", "Digital Mic4",
+                        "DMIC5", "MIC BIAS4 External",
+                        "MIC BIAS4 External", "Digital Mic5",
+                        "DMIC6", "MIC BIAS4 External",
+                        "MIC BIAS4 External", "Digital Mic6";
 
 
 		qcom,cdc-mclk-gpios = <&pm8941_gpios 15 0>;
@@ -2180,17 +2180,6 @@
 		qcom,msm-bus,vectors-KBps =
 				<88 618 0 0>,
 				<88 618 0 800>;
-        };*/
-        /*#else*/
-         qcom,msm-rng@f9bff000 {
-		compatible = "qcom,msm-rng";
-		reg = <0xf9bff000 0x200>;
-		qcom,msm-bus,name = "msm-rng-noc";
-		qcom,msm-bus,num-cases = <2>;
-		qcom,msm-bus,num-paths = <1>;
-		qcom,msm-bus,vectors-KBps =
-				<54 618 0 0>,
-				<54 618 0 800>;
         };
         /*liuyan fix end*/
         /*#endif*/
@@ -2353,9 +2342,9 @@
                 qcom,msm-bus,name = "qcrypto-noc";
 		qcom,msm-bus,num-cases = <2>;
 		qcom,msm-bus,num-paths = <1>;
-                qcom,use-sw-aes-cbc-ecb-ctr-algo;
-                qcom,use-sw-aes-xts-algo;
-                qcom,use-sw-ahash-algo;
+		qcom,use-sw-aes-cbc-ecb-ctr-algo;
+		qcom,use-sw-aes-xts-algo;
+		qcom,use-sw-ahash-algo;
 		qcom,msm-bus,vectors-KBps =
 				<56 512 0 0>,
 				<56 512 3936000 393600>;
@@ -2464,7 +2453,7 @@
 		qcom,rx-ring-size = <64>;
 	};
 
-        memory_hole: qcom,msm-mem-hole {
+	memory_hole: qcom,msm-mem-hole {
                 compatible = "qcom,msm-mem-hole";
                 qcom,memblock-remove = <0x5d00000 0x7d00000
 					0xfa00000 0x500000 
